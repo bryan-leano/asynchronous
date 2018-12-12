@@ -47,6 +47,7 @@
       getRecipe();
       */
 
+      /*
       const getIDs = new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([523, 883, 432, 974]);
@@ -72,6 +73,7 @@
           }, 1500, publisher)
         })
       }
+      */
 
       /*
       getIDs
@@ -91,6 +93,7 @@
       });
       */
 
+      /*
       async function getRecipesAW() {
         const IDs = await getIDs;
         console.log(IDs);
@@ -102,6 +105,23 @@
         return recipe;
       }
       getRecipesAW().then(result => console.log(`${result} is the best ever!`));
+      */
+
+      function getWeather(woeid) {
+        fetch(`https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/${woeid}/`)
+        .then(result => {
+          console.log(result);
+          return result.json();
+        })
+        .then(data => {
+          //console.log(data);
+          const today = data.consolidated_weather[0];
+          console.log(`temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}.`)
+        })
+        .catch(error => console.log(error));
+      }
+      getWeather(2487956);
+      getWeather(44418);
 
     </script>
 </body>
